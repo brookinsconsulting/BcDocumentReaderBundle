@@ -1,0 +1,19 @@
+{#
+ # File containing the ezstring_content_field.html.twig template override part of the BcDocumentReaderBundle package.
+ #
+ # @copyright Copyright (C) Brookins Consulting. All rights reserved.
+ # @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ # @license For full copyright and license information view LICENSE and COPYRIGHT.md file distributed with this source code.
+ # @version //autogentag//
+#}
+{% extends "EzPublishCoreBundle::content_fields.html.twig" %}
+
+{% block ezurl_field %}
+{% spaceless %}
+    {% if field.value is not empty %}
+        {% set reader = field.value.link|bc_document_reader( null, 'Detected by: bc_document_reader twig filter use within the ezurl_content_field.html.twig template' ) %}
+        <a href="{{ field.value.link }}"
+            {{ block( 'field_attributes' ) }}>{{ field.value.text ? field.value.text : field.value.link }}</a>
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

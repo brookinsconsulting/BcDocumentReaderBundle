@@ -1,0 +1,66 @@
+# We explicitly prepend config for "ezpublish" namespace in service container extension,
+# so no need to repeat it here
+system:
+    default:
+        field_templates:
+            - {template: "BcDocumentReaderBundle::fields/ezurl_content_field.html.twig", priority: 20}
+            - {template: "BcDocumentReaderBundle::fields/ezstring_content_field.html.twig", priority: 10}
+        location_view:
+            full:
+                file:
+                    template: "BcDocumentReaderBundle:full:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+            line:
+                folder:
+                    template: "BcDocumentReaderBundle:line:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+        content_view:
+            embed:
+                embed_file:
+                    template: "BcDocumentReaderBundle:embed:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+    ezdemo_frontend_group:
+        field_templates:
+            - {template: "BcDocumentReaderBundle::fields/ezurl_content_field.html.twig", priority: 20}
+            - {template: "BcDocumentReaderBundle::fields/ezstring_content_field.html.twig", priority: 10}
+        location_view:
+            full:
+                file:
+                    template: "BcDocumentReaderBundle:full:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+            line:
+                folder:
+                    template: "BcDocumentReaderBundle:line:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+        content_view:
+            embed:
+                embed_file:
+                    template: "BcDocumentReaderBundle:embed:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+    site:
+        field_templates:
+            - {template: "BcDocumentReaderBundle::fields/ezurl_content_field.html.twig", priority: 20}
+            - {template: "BcDocumentReaderBundle::fields/ezstring_content_field.html.twig", priority: 10}
+        location_view:
+            full:
+                file:
+                    template: "BcDocumentReaderBundle:full:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+            line:
+                file:
+                    template: "BcDocumentReaderBundle:line:file.html.twig"
+                    match:
+                        Identifier\ContentType: file
+        content_view:
+            embed:
+                embed_file:
+                    template: "BcDocumentReaderBundle:embed:file.html.twig"
+                    match:
+                        Identifier\ContentType: file

@@ -1,0 +1,83 @@
+services:
+    brookinsconsulting.document_reader_persistence:
+        class: %brookinsconsulting.document_reader_persistence.class%
+        scope: container
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+        tags:
+            -  { name: brookinsconsulting.document_reader_persistence }
+    brookinsconsulting.document_reader:
+        class: %brookinsconsulting.document_reader.class%
+        scope: container
+        arguments:
+            - "@service_container"
+            - "@ezpublish.api.repository"
+            - "@?logger"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+            - [ "%brookinsconsulting.documentreader.mimetypes.config%" ]
+        tags:
+            -  { name: brookinsconsulting.document_reader }
+    brookinsconsulting.document_reader.mimetype.extension.guesser:
+        class: %brookinsconsulting.document_reader.mimetype.extension.guesser.class%
+        tags:
+            -  { name: brookinsconsulting.document_reader.mimetype.extension.guesser }
+    brookinsconsulting.document_reader.mimetype.icon.guesser:
+        class: %brookinsconsulting.document_reader.mimetype.icon.guesser.class%
+        scope: container
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+            - [ "%brookinsconsulting.documentreader.mimetypes.config%" ]
+        tags:
+            -  { name: brookinsconsulting.document_reader.mimetype.icon.guesser }
+    brookinsconsulting.document_reader.xmlblock.link.preconverter:
+        class: %brookinsconsulting.document_reader.xmlblock.link.preconverter.class%
+        arguments:
+            - "@service_container"
+            - "@ezpublish.api.repository"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+        tags:
+            - { name: brookinsconsulting.xmltextblock.link.preconverter }
+            - { name: ezpublish.ezxml.converter }
+#    brookinsconsulting.document_reader.xmlblock.ezlink.preconverter:
+#        class: %brookinsconsulting.document_reader.xmlblock.ezlink.preconverter.class%
+#        arguments:
+#            - "@ezpublish.api.service.location"
+#            - "@ezpublish.api.service.content"
+#            - "@ezpublish.urlalias_router"
+#            - "@?logger"
+#            - "@service_container"
+#        tags:
+#            - { name: brookinsconsulting.xmltextblock.ezlink.preconverter }
+#            - { name: ezpublish.ezxml.converter }
+    brookinsconsulting.twig.document_reader:
+        class: %brookinsconsulting.twig.document_reader.class%
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+        tags:
+            -  { name: twig.extension }
+    brookinsconsulting.twig.document_readers:
+        class: %brookinsconsulting.twig.document_readers.class%
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.documentreader.config%" ]
+        tags:
+            -  { name: twig.extension }
+    brookinsconsulting.twig.extension.filesize:
+        class: %brookinsconsulting.twig.extension.filesize.class%
+        arguments: [@translator, %brookinsconsulting.twig.extension.filesize.suffixes%, @ezpublish.config.resolver, @ezpublish.locale.converter ]
+        tags:
+            - {name: twig.extension}
+parameters:
+    brookinsconsulting.document_reader.class: BrookinsConsulting\BcDocumentReaderBundle\Services\BcDocumentReader
+    brookinsconsulting.document_reader_persistence.class: BrookinsConsulting\BcDocumentReaderBundle\Services\BcDocumentReaderPersistence
+    brookinsconsulting.document_reader.xmlblock.link.preconverter.class: BrookinsConsulting\BcDocumentReaderBundle\Services\BcDocumentReaderXmlBlockLinkPreConverter
+    brookinsconsulting.document_reader.xmlblock.ezlink.preconverter.class: BrookinsConsulting\BcDocumentReaderBundle\Services\BcDocumentReaderEzLinkToHtml5PreConverter
+    brookinsconsulting.document_reader.mimetype.extension.guesser.class: BrookinsConsulting\BcDocumentReaderBundle\Symfony\Component\HttpFoundation\File\MimeType\ExtensionMimeTypeGuesser
+    brookinsconsulting.document_reader.mimetype.icon.guesser.class: BrookinsConsulting\BcDocumentReaderBundle\Symfony\Component\HttpFoundation\File\MimeType\MimeTypeIconGuesser
+    brookinsconsulting.twig.document_reader.class: BrookinsConsulting\BcDocumentReaderBundle\Twig\DocumentReaderTwigExtension
+    brookinsconsulting.twig.document_readers.class: BrookinsConsulting\BcDocumentReaderBundle\Twig\DocumentReadersTwigExtension
+    brookinsconsulting.twig.extension.filesize.class: BrookinsConsulting\BcDocumentReaderBundle\Twig\FileSizeExtension
+    brookinsconsulting.twig.extension.filesize.suffixes: ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB']

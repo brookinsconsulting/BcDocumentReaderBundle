@@ -1,0 +1,75 @@
+parameters:
+# BcDocumentReader Option Settings
+    options:
+        # document reader debug output only displayed when display_debug: true
+        display_debug: false
+        # display_debug_level settings supports use values between 0 and 3. Note: Only use 3 under extreme need as it too verbose and is mostly not needed.
+        display_debug_level: 0
+# BcDocumentReader Theme Settings
+    theme:
+        size: small
+        theme: crystal
+        admin_theme: crystal-admin
+        legacy_icons_directory: bundles/bcdocumentreader/images/icons/legacy
+        file_field_identifiers: [ file, file2 ]
+        sizes:
+            normal: 32x32
+            small: 16x16
+        default_icon: mimetypes/binary.png
+# BcDocumentReader MimeType Viewer Helper Application Groups Settings
+    helpers:
+        PDF:
+            name: Adobe PDF Document
+            viewer_name: Adobe PDF Reader
+            viewer_url: https://get.adobe.com/reader/
+            icon: mimetypes/pdf.png
+        MSWord:
+            name: Microsoft Word Document
+            viewer_name: MS Word Viewer
+            viewer_url: http://www.microsoft.com/downloads/details.aspx?FamilyID=3657ce88-7cfa-457a-9aec-f4f827f20cac&displaylang=en
+            icon: mimetypes/word.png
+        MSExcel:
+            name: Microsoft Excel Document
+            viewer_name: MS Excel Viewer
+            viewer_url: http://www.microsoft.com/downloads/details.aspx?FamilyID=1cd6acf9-ce06-4e1c-8dcf-f33f669dbc3a&displaylang=en
+            icon: mimetypes/excel.png
+        MSPowerPoint:
+            name: Microsoft PowerPoint Document
+            viewer_name: MS PowerPoint Viewer
+            viewer_url: http://www.microsoft.com/downloads/details.aspx?familyid=048DC840-14E1-467D-8DCA-19D2A8FD7485&displaylang=en
+            icon: mimetypes/powerpoint.png
+        QuicktimeWin:
+            name: Quicktime Movie
+            viewer_name: Quicktime Media Player
+            viewer_url: http://www.apple.com/quicktime/download/win.html
+            icon: mimetypes/quicktime.png
+        WindowsMediaVideo:
+            name: Windows Media Video
+            viewer_name: Windows Media Player
+            viewer_url: http://windows.microsoft.com/en-US/windows/download-windows-media-player
+            icon: mimetypes/video.png
+        WindowsMediaAudio:
+            name: Windows Media Audio
+            viewer_name: Windows Media Player
+            viewer_url: http://windows.microsoft.com/en-US/windows/download-windows-media-player
+            icon: mimetypes/sound.png
+        CompressedWin:
+            name: Compressed File
+            viewer_name: WinRar
+            viewer_url: http://www.rarlab.com/rar/wrar521.exe
+            icon: mimetypes/tgz.png
+        CompressedSitMac:
+            name: Compressed Sit File
+            viewer_name: StuffIt Expander
+            viewer_url: http://my.smithmicro.com/stuffit-expander-mac.html#downloadexpander
+            icon: mimetypes/tgz.png
+        CompressedSitWin:
+            name: Compressed Sit File
+            viewer_name: StuffIt Expander
+            viewer_url: http://my.smithmicro.com/stuffit-expander-windows.html#downloadexpander
+            icon: mimetypes/tgz.png
+        WindowsVlc:
+            name: VLC Media File
+            viewer_name: VLC Media Player
+            viewer_url: http://get.videolan.org/vlc/2.2.1/win32/vlc-2.2.1-win32.exe
+            icon: mimetypes/sound.png

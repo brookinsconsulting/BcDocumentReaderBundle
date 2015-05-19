@@ -1,0 +1,78 @@
+// Brookins Consulting BcEzXmlTextLinkDocumentReader Bundle readerlinks Sub Stylesheet
+
+#reader_links {
+  position: relative;
+  top: 10px;
+  float: left;
+  clear: both;
+  margin-bottom: 14px;
+}
+
+#reader_links ul.horizontal {
+  position: relative;
+}
+
+#reader_links h5 {
+  border-top: 1px solid #00417a;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-size: 110%;
+  padding-bottom: 5px;
+  font-weight: normal;
+}
+
+#reader_links .menu {
+  line-height: 1.5;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#reader_links ul li {
+  margin-right: 5px;
+  padding-right: 5px;
+  margin-left: 0;
+  margin-bottom: 7px;
+  padding-bottom: 0;
+  height: 24px;
+}
+
+#reader_links ul.horizontal li {
+  display: inline-block;
+  margin-left: 2px;
+  position: relative;
+  vertical-align: top;
+}
+
+#reader_links img {
+  top: 3px;
+  position: relative;
+  vertical-align: 0;
+}
+
+#reader_links .menu img {
+  vertical-align: middle;
+}
+
+#reader_links img {
+  vertical-align: middle;
+}
+
+#reader_links img {
+  -ms-interpolation-mode: bicubic;
+}
+
+#reader_links img, object, embed {
+  max-width: 100%;
+  height: auto;
+}
+
+#reader_links ul li a {
+  top: 3px;
+  display: inline;
+  padding: 0 5px 4px;
+  position: relative;
+  text-decoration: underline;
+}
+

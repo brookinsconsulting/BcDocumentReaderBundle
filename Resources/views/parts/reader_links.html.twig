@@ -1,0 +1,34 @@
+{#
+ # File containing the reader_links.html.twig template part of the BcDocumentReaderBundle package.
+ #
+ # @copyright Copyright (C) Brookins Consulting. All rights reserved.
+ # @license For full copyright and license information view LICENSE and COPYRIGHT.md file distributed with this source code.
+ # @version //autogentag//
+#}
+
+{% if bc_document_reader_options.display_debug and bc_document_reader_options.display_debug_level >= 3 %}
+reader_links.html.twig : dump : bc_pagedata:<br />
+{{ dump( bc_pagedata() ) }}<hr />
+{% endif %}
+
+{% set readers = bc_document_readers() %}
+
+{% if bc_document_reader_options.display_debug and bc_document_reader_options.display_debug_level >= 2 %}
+reader_links.html.twig : dump : readers (from bc_pagedata):<br />
+{{ dump( readers ) }}
+{% endif %}
+
+{% if readers is not empty %}
+<div id="reader_links">
+  <h5>Document reader download {% if readers|length > 2 %}links{% else %}links{% endif %}</h5>
+
+  <ul class="menu horizontal">
+    {% for reader in readers %}
+      {% if bc_document_reader_options.display_debug and bc_document_reader_options.display_debug_level >= 3 %}
+        {{ dump( reader ) }}<hr />
+      {% endif %}
+      <li>{% if reader.mime_type_icon %}<img class="documentReaderImage" src="{{ asset( reader.mime_type_icon ) }}" width="{{reader.mime_type_icon_width}}" height="{{reader.mime_type_icon_height}}" alt="{{reader.file_type_name}}" title="{{reader.file_type_name}}" />{% endif %}<a class="external" href="{{reader.viewer_url}}">{{reader.viewer_name}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

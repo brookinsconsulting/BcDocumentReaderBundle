@@ -1,0 +1,26 @@
+{
+    "name": "brookinsconsulting/bcdocumentreaderbundle",
+    "description": "BC Document Reader bundle for eZ Publish Platform. Detects file download links and displays helper applications which can open the files.",
+    "type" : "library",
+    "keywords" : [ "eZ Publish", "eZ Platform", "bundle", "document link helper application reader detection solution" ],
+    "homepage": "https://bitbucket.org/brookinsconsulting/bcdocumentreaderbundle",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name" : "Brookins Consulting",
+            "email": "info@brookinsconsulting.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.0.0",
+        "ezsystems/ezpublish-kernel": "@dev",
+        "brookinsconsulting/bcpagedatabundle": "@dev"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "BrookinsConsulting\\BcDocumentReaderBundle" : ""
+        }
+    },
+    "target-dir" : "BrookinsConsulting/BcDocumentReaderBundle"
+}

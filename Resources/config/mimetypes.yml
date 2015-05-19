@@ -1,0 +1,46 @@
+parameters:
+# BcDocumentReader MimeType Viewer Helper Application Group Mapping Settings
+    helper_mime_map:
+    - { type: "MSWord", mimeType: "application/msword", extensions: [ doc, docx ] }
+    - { type: "MSWord", mimeType: "application/vnd.ms-word.template.macroEnabled.12" }
+    - { type: "MSWord", mimeType: "application/vndms-word.document.macroEnabled.12" }
+    - { type: "MSWord", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }
+    - { type: "MSWord", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.template" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.ms-powerpoint.template.macroEnabled.12" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.openxmlformats-officedocument.presentationml.template" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.ms-powerpoint.addin.macroEnabled.12" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.ms-powerpoint.slideshow.macroEnabled.12" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.openxmlformats-officedocument.presentationml.slideshow" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.ms-powerpoint.presentation.macroEnabled.12" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.openxmlformats-officedocument.presentationml.presentation" }
+    - { type: "MSPowerPoint", mimeType: "application/vnd.ms-powerpoint" }
+    - { type: "MSExcel", mimeType: "application/vnd.ms-excel", extensions: [ xls ] }
+    - { type: "MSExcel", mimeType: "application/vnd.ms-excel.addin.macroEnabled.12" }
+    - { type: "MSExcel", mimeType: "application/vnd.ms-excel.sheet.binary.macroEnabled.12" }
+    - { type: "MSExcel", mimeType: "application/vnd.ms-excel.sheet.macroEnabled.12" }
+    - { type: "MSExcel", mimeType: "application/vnd.ms-excel.template.macroEnabled.12" }
+    - { type: "MSExcel", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+    - { type: "MSExcel", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.template" }
+    - { type: "PDF", mimeType: "application/pdf", extensions: [ pdf ] }
+    - { type: "PDF", mimeType: "application/postscript", extensions: [ ps ] }
+    - { type: "WindowsMediaVideo", mimeType: "video/x-msvideo", extensions: [ avi ] }
+    - { type: "WindowsMediaVideo", mimeType: "video/x-ms-wmv", extensions: [ wmv ] }
+    - { type: "WindowsMediaVideo", mimeType: "video/mpeg", extensions: [ mpg, mpeg ] }
+    - { type: "WindowsMediaVideo", mimeType: "video/mp4", extensions: [ mp4 ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/L24", extensions: [ wav, wave ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/wav", extensions: [ wav, wave ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/wave", extensions: [ wav, wave ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/vnd.wave", extensions: [ wav, wave ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/x-wav", extensions: [ wav, wave ] }
+    - { type: "WindowsMediaAudio", mimeType: "audio/basic", extensions: [ au, snd ] }
+    - { type: "QuicktimeWin", mimeType: "video/quicktime", extensions: [ mov ] }
+    - { type: "CompressedWin", mimeType: "application/zip", extensions: [ zip ] }
+    - { type: "CompressedWin", mimeType: "application/x-gzip", extensions: [ gz ] }
+    - { type: "CompressedWin", mimeType: "application/x-bzip2", extensions: [ bz2 ] }
+    - { type: "CompressedWin", mimeType: "application/x-gtar", extensions: [ tar.gz, tgz, tar.Z, tar.bz2, tbz2, tar.lzma, tlz ] }
+    - { type: "CompressedWin", mimeType: "application/x-tar", extensions: [ tar ] }
+    - { type: "CompressedWin", mimeType: "application/x-rar-compressed", extensions: [ rar ] }
+    - { type: "CompressedSitWin", mimeType: "application/x-stuffit", extensions: [ sit ] }
+    - { type: "CompressedSitWin", mimeType: "application/x-stuffitx", extensions: [ sitx ] }
+    - { type: "WindowsVlc", mimeType: "audio/ogg", extensions: [ ogg, opus, oga, spx ] }
+    - { type: "WindowsVlc", mimeType: "application/octet-stream", extensions: [ ogg, opus, oga, spx ] }

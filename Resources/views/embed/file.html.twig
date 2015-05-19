@@ -1,0 +1,23 @@
+{#
+ # File containing the embed/file.html.twig template override part of the BcDocumentReaderBundle package.
+ #
+ # @copyright Copyright (C) Brookins Consulting. All rights reserved.
+ # @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ # @license For full copyright and license information view LICENSE and COPYRIGHT.md file distributed with this source code.
+ # @version //autogentag//
+#}
+
+{# Embed View File Template Override #}
+
+<div class="content-view-embed">
+    {% if content.fields['file'] is defined and content.getField('file').value is not empty %}
+        {% set uri = 'content/download/' ~ content.contentInfo.id ~ '/' ~ content.getField('file').id
+        ~ '/version/' ~ content.contentInfo.currentVersionNo ~  "/file/"
+        ~ content.getField('file').value.fileName|escape( 'url' ) %}
+        {% set reader = uri|bc_document_reader( content.getField('file').value.mimeType, 'Detected by: bc_document_reader twig filter use within the embed/file.html.twig template' ) %}
+        <div class="attribute-file">
+            <a href="{{ path( 'ez_legacy', { 'module_uri': uri } ) }}">{{ content.contentInfo.name }}</a> &nbsp;({{ content.getField('file').value.fileSize|bc_file_size( 1 ) }})
+        </div>
+    {% endif %}
+</div>
+

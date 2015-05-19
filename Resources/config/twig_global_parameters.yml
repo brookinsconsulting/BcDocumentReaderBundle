@@ -1,0 +1,3 @@
+# Document reader global twig variables. Variable bc_document_reader_options is used within twig templates to offer settings based debug conditional control
+globals:
+    bc_document_reader_options: %brookinsconsulting.documentreader.options.config%

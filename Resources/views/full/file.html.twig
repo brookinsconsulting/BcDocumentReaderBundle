@@ -1,0 +1,42 @@
+{#
+ # File containing the full/file.html.twig template override part of the BcDocumentReaderBundle package.
+ #
+ # @copyright Copyright (C) Brookins Consulting. All rights reserved.
+ # @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ # @license For full copyright and license information view LICENSE and COPYRIGHT.md file distributed with this source code.
+ # @version //autogentag//
+#}
+{% extends "eZDemoBundle::pagelayout.html.twig" %}
+
+{# Full View File Template Override #}
+
+{% block content %}
+<section class="content-view-full">
+    <article class="class-file">
+
+        <div class="attribute-header">
+            <h1><a href={{ path( location ) }} title="{{ ez_field_value( content, 'name' ) }}" class="teaser-link">{{ ez_render_field( content, 'name' ) }}</a></h1>
+        </div>
+
+        {% set descriptionContent = content.getField('description').value.xml|xmltext_to_html5 %}
+
+        {% if descriptionContent is not empty %}
+        <div class="attribute-long">
+            {{descriptionContent|raw}}
+        </div>
+        {% endif %}
+
+        {% if content.fields['file'] is defined and content.getField('file').value is not empty %}
+        <div class="attribute-file">
+            {% set uri = 'content/download/' ~ content.contentInfo.id ~ '/' ~ content.getField('file').id
+            ~ '/version/' ~ content.contentInfo.currentVersionNo ~  "/file/"
+            ~ content.getField('file').value.fileName|escape( 'url' ) %}
+            {% set reader = uri|bc_document_reader( content.getField('file').value.mimeType, 'Detected by: bc_document_reader twig filter use within the full/file.html.twig template' ) %}
+               <p><a href="{{ path( 'ez_legacy', {'module_uri': uri} ) }}">{{ content.contentInfo.name }}</a></p>
+            {# <p>{attribute_view_gui attribute=$node.data_map.file icon_title=$node.name}</p> #}
+        </div>
+        {% endif %}
+
+    </article>
+</section>
+{% endblock %}

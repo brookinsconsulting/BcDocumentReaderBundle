@@ -1,0 +1,45 @@
+{#
+ # File containing the line/file.html.twig template override part of the BcDocumentReaderBundle package.
+ #
+ # @copyright Copyright (C) Brookins Consulting. All rights reserved.
+ # @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ # @license For full copyright and license information view LICENSE and COPYRIGHT.md file distributed with this source code.
+ # @version //autogentag//
+#}
+{# % extends "eZDemoBundle::pagelayout.html.twig" % #}
+
+{# Line View File Template Override #}
+
+{% block content %}
+<div class="content-view-line">
+    <div class="attribute-header">
+        {# <a href="{{ path( 'ez_legacy', { 'module_uri': uri } ) }}">{{ content.contentInfo.name }}</a> &nbsp;({{ content.getField('file').value.fileSize|bc_file_size( 1 ) }}) #}
+        {# <a href="{{ path( 'ez_urlalias', {'locationId': item.valueObject.contentInfo.mainLocationId} ) }}">{{ content.contentInfo.name }}</a> &nbsp;({{ content.getField('file').value.fileSize|bc_file_size( 1 ) }}) #}
+        <h2><a href={{ location }} title="{{ ez_field_value( content, 'name' ) }}" class="teaser-link">{{ ez_render_field( content, 'name' ) }}</a></h2>
+    </div>
+    <article class="class-file file-to-download">
+        <div class="header">
+        {% if content.fields['file'] is defined and content.getField('file').value is not empty %}
+        <div class="attribute-file">
+            <span class="file-size">File size: ({{ content.getField('file').value.fileSize|bc_file_size( 1 ) }})</span>
+            <span class="modified-date">Modified: {{ content.contentInfo.modificationDate|localizeddate( 'short', 'short', app.request.locale ) }}</span>
+            {% set uri = 'content/download/' ~ content.contentInfo.id ~ '/' ~ content.getField('file').id
+            ~ '/version/' ~ content.contentInfo.currentVersionNo ~  "/file/"
+            ~ content.getField('file').value.fileName|escape( 'url' ) %}
+            {% set reader = uri|bc_document_reader( content.getField('file').value.mimeType, 'Detected by: bc_document_reader twig filter use within the line/file.html.twig template' ) %}
+            <p>Download file: <a href="{{ path( 'ez_legacy', {'module_uri': uri} ) }}">{{ content.contentInfo.name }}</a></p>
+            {# <p>{attribute_view_gui attribute=$node.data_map.file icon_size='small' icon_title=$node.name icon='yes'}</p> #}
+        </div>
+        {% endif %}
+        </div>
+
+        {% set descriptionContent = content.getField('description').value.xml|xmltext_to_html5 %}
+
+        {% if descriptionContent is not empty %}
+        <div class="attribute-long">
+            {{descriptionContent|raw}}
+        </div>
+        {% endif %}
+    </article>
+</div>
+{% endblock %}
