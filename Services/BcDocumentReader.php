@@ -59,7 +59,7 @@ class BcDocumentReader extends BcDocumentReaderPersistence
     }
 
     /**
-     * Adds a file extension and related meta information into the document readers extension persistant storage
+     * Adds a file extension and related meta information into the document readers extension persistent storage
      *
      * @param string $url Url of the file extension to add
      * @param string $fileMimeType File extension mimetype
@@ -136,7 +136,7 @@ class BcDocumentReader extends BcDocumentReaderPersistence
     }
 
     /**
-     * Adds a file extension and related meta information into the document readers extension persistant storage from a eZ\Publish\Core\Repository\Values\Content\Content object
+     * Adds a file extension and related meta information into the document readers extension persistent storage from a eZ\Publish\Core\Repository\Values\Content\Content object
      *
      * @param eZ\Publish\Core\Repository\Values\Content\Content $content Content object containing a file field's file extension to add
      * @param \DOMElement $link Reference to the DOMElement object

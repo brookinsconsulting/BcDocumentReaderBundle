@@ -90,11 +90,13 @@ This solution provides the following twig filters and functions
 
 ### Dependencies
 
+* This solution does not depend on eZ Publish Legacy in any way
+
 * Persistent storage of pagedata and document reader file link extensions
 
-* Underlying persistant storage of pagedata variables is provided by the [BcPageData](https://bitbucket.org/brookinsconsulting/bcpagedatabundle) bundle.
+* Underlying persistent storage of pagedata variables is provided by the [BcPageData](https://bitbucket.org/brookinsconsulting/bcpagedatabundle) bundle.
 
-    * If you install via composer this dependency will be installed automatically.
+    * If you install via composer this dependency will be installed automatically
 
 
 Installation
@@ -318,6 +320,7 @@ Troubleshooting
 ### Read the FAQ
 
 Some problems are more common than others. The most common ones are listed in the the [doc/FAQ.md](doc/FAQ.md)
+
 
 ### Support
 
