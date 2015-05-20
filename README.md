@@ -99,6 +99,41 @@ This solution provides the following twig filters and functions
     * If you install via composer this dependency will be installed automatically
 
 
+Use case requirements
+=====================
+
+This solution was created to provide for a common set of customer website requirements regarding document accessibility.
+
+There may not be specific standards requiring all or parts of this solution, but it is part of the best practices we should strongly consider following for making accessible document management based solutions on the web.
+
+
+## ADA / Section 508 Compliance
+
+The standards describe more specifically about making linked documents themselves accessible (which is out of our hands and instead in the hands of the customer) the rest are best practices but not necessarily 'required'.
+
+Section 508 Standards / Compliance requirements focus heavily on standards for making the documents themselves accessible (which is often out of our hands and instead in the hands of the customer).
+
+While the Section 508 Standards / Compliance requirements do not specifically mention or require all of the below items, we find the following best practices (not necessarily 'required') help create a more accessible user-experience for document management / reading on the web.
+
+* Links to document direct-downloads should include the title of the document and/or be explicitly descriptive of the linked document.
+
+* All links including but not limited to document direct-download links are subject to all general 508 Standards.
+
+    * Links should be of a readable size depending on device.
+
+    * Links should comply with color contrast standards.
+
+* Document direct-download links should have the associated mime-type icon and filesize when and where appropriate.
+
+* Pages with links for direct download of documents should also display links to an appropriate download page of a corresponding document reader (ie Adobe acrobat) which can open the document at the bottom of the page where possible.
+
+* Any image (or any non-text element) associated with the document link (e.g. thumbnail of the document) must include 'alt' text that succinctly describes the content conveyed by the element.
+
+* Avoid having redundant links next to each other within the structure of the page (e.g. If a thumbnail image links to a document followed by a standard text link to the same document, both should be wrapped inside a single `<a>` element where possible).
+
+Visit [http://www.section508.gov](http://www.section508.gov) for more information on the 'Americans with Disabilities Act and Section 508 Compliance'.
+
+
 Installation
 ============
 
