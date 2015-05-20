@@ -7,9 +7,9 @@ This bundle implements a solution to detect file download links within XMLBlock 
 Version
 =======
 
-* The current version of BC Document Reader is 0.1.5
+* The current version of BC Document Reader is 0.1.6
 
-* Last Major update: May 19, 2015
+* Last Major update: May 20, 2015
 
 
 Copyright
@@ -137,12 +137,83 @@ Here is an example of how to install bundle assets:
 
 It is recommended (for the built-in functionality to work as designed) to install an include of the bundle's styles within your pagelayout template.
 
+
+### Bundle Styles Installation for sites which are already configured to serve scss
+
+This solution uses scss by default for it's stylesheets instead of pure css and expects your installation's assetic config.yml to have enabled the assetic stylesheets filters "compass,cssrewrite".
+
 Edit your pagelayout twig template and add the bundle's styles.scss within your stylesheets include:
 
     {% stylesheets filter="compass,cssrewrite"
         "@YourCustomBundle/Resources/public/scss/styles.scss"
         "@BcDocumentReaderBundle/Resources/public/scss/styles.scss"
     %}
+
+You will also want to ensure both Ruby and Compass are installed and available as they are used by assetic to convert the scss into css.
+
+You can install ruby and compass in various ways. Make sure that they are available via command line before running the assetic:dump command and then testing the website's use of them.
+
+It is recommended (for the built-in functionality to work as designed) to dump bundle assets after installing the bundle styles include in the pagelayout template.
+
+Here is an example of how to dump bundle assets:
+
+    php -d memory_limit=-1 ezpublish/console assetic:dump --env=dev web
+
+
+### Bundle Styles Installation for sites which are -not- already configured to serve scss
+
+This solution uses scss by default for it's stylesheets instead of pure css and expects your installation's assetic config.yml to have enabled the assetic stylesheets filters "compass,cssrewrite".
+
+In a default installation of eZ Publish Platform / eZ Platform you can enable these requirements yourself by making the following changes.
+
+
+#### Enable assetic stylesheets filters compass and cssrewrite
+
+Edit your `ezpublish/config.yml` file and make the following changes:
+
+    # Assetic Configuration
+    assetic:
+        debug:          %kernel.debug%
+        use_controller: true
+    # snip (to avoid confusion)
+        filters:
+            cssrewrite: ~
+            compass: ~
+
+Specifically you must add these lines to your assetic configuration, save all config changes and clear all caches:
+
+    # Assetic Configuration
+    # snip (to avoid confusion)
+        filters:
+            cssrewrite: ~
+            compass: ~
+
+
+#### Ensure Ruby and Compass are installed and available
+
+Ruby and Compass are used by assetic to convert the scss into css. You can install ruby and compass in various ways. Make sure that they are available via command line before testing the website's use of them.
+
+
+#### Scss style template code installation for sites which are -not- already configured to serve scss
+
+Edit your `pagelayout.html.twig` template or `page_head_style.html.twig` template and add the bundle's styles.scss calls *after* your existing css only stylesheets include calls:
+
+    {% stylesheets
+        '@eZDemoBundle/Resources/public/css/bootstrap.css'
+        '@eZDemoBundle/Resources/public/css/responsive.css'
+        '@eZDemoBundle/Resources/public/css/video.css'
+        '@BCPageLayoutOverrideTestBundle/Resources/public/css/override.css'
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    {% stylesheets filter="compass,cssrewrite"
+        '@BcDocumentReaderBundle/Resources/public/scss/styles.scss'
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+The above example is from a default installation of eZ Publish Platform Demo Bundle (2014.11).
 
 It is recommended (for the built-in functionality to work as designed) to dump bundle assets after installing the bundle styles include in the pagelayout template.
 
