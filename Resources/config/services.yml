@@ -27,6 +27,7 @@ services:
         scope: container
         arguments:
             - "@service_container"
+            - "@?logger"
             - [ "%brookinsconsulting.documentreader.config%" ]
             - [ "%brookinsconsulting.documentreader.mimetypes.config%" ]
         tags:

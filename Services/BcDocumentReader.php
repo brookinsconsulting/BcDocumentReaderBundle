@@ -304,14 +304,14 @@ class BcDocumentReader extends BcDocumentReaderPersistence
                     if( !$this->findNeedleInArrayAndReturnContainingArray( $mimeTypeHelperMappingType, $results ) )
                     {
                         $results[] = array( 'file_extension' => $fileTypeExtension,
+                                            'mime_type' => $mimeContentType,
                                             'mime_type_group' => $mimeTypeHelperMappingType,
                                             'file_type_name' => $mimeTypeHelperGroup['name'],
                                             'viewer_name' => $mimeTypeHelperGroup['viewer_name'],
                                             'viewer_url' => $mimeTypeHelperGroup['viewer_url'],
-                                            'mime_type' => $mimeContentType, //$mimeTypeHelperGroup["icon"],
-                                            'mime_type_icon' => $mimeTypeIcon['image'],
-                                            'mime_type_icon_height' => $mimeTypeIcon['height'],
-                                            'mime_type_icon_width' => $mimeTypeIcon['width'] );
+                                            'icon' => $mimeTypeIcon['image'],
+                                            'icon_height' => $mimeTypeIcon['height'],
+                                            'icon_width' => $mimeTypeIcon['width'] );
                     }
                 }
             }

@@ -27,7 +27,7 @@ reader_links.html.twig : dump : readers (from bc_pagedata):<br />
       {% if bc_document_reader_options.display_debug and bc_document_reader_options.display_debug_level >= 3 %}
         {{ dump( reader ) }}<hr />
       {% endif %}
-      <li>{% if reader.mime_type_icon %}<img class="documentReaderImage" src="{{ asset( reader.mime_type_icon ) }}" width="{{reader.mime_type_icon_width}}" height="{{reader.mime_type_icon_height}}" alt="{{reader.file_type_name}}" title="{{reader.file_type_name}}" />{% endif %}<a class="external" href="{{reader.viewer_url}}">{{reader.viewer_name}}</a></li>
+      <li>{% if reader.icon %}<img class="documentReaderImage" src="{{ asset( reader.icon ) }}" width="{{reader.icon_width}}" height="{{reader.icon_height}}" alt="{{reader.file_type_name}}" title="{{reader.file_type_name}}" />{% endif %}<a class="external" href="{{reader.viewer_url}}">{{reader.viewer_name}}</a></li>
     {% endfor %}
   </ul>
 </div>
