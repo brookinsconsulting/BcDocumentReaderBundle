@@ -817,7 +817,7 @@ class MimeTypeIconGuesser extends MimeTypeExtensionGuesser implements ExtensionG
      * @param array $options
      * @param array $mimetypes
      */
-    public function __construct( ContainerInterface $container, LoggerInterface $logger = null, array $options, array $mimetypes )
+    public function __construct( ContainerInterface $container, LoggerInterface $logger = null, array $options = array(), array $mimetypes = array() )
     {
         $this->container = $container;
         $this->logger = $logger;
@@ -853,12 +853,12 @@ class MimeTypeIconGuesser extends MimeTypeExtensionGuesser implements ExtensionG
 
         $storagePath = $iconImagePath . '/' . $iconImageTheme . '/' . $sizeParam . '/';
 
-        $imagePathMapping = $this->container->get('brookinsconsulting.document_reader')->findNeedleInArrayAndReturnContainingArray( $mimeType );
+        $imagePathMapping = $this->container->get( 'brookinsconsulting.document_reader' )->findNeedleInArrayAndReturnContainingArray( $mimeType );
 
         $imagePathMappingGroupType = $imagePathMapping['type'];
         $imageFilePath = $this->helpers[$imagePathMappingGroupType]['icon'];
 
-        if( !empty( $imagePathMapping ) && $imageFilePath != null )
+        if ( !empty( $imagePathMapping ) && $imageFilePath != null )
         {
             $imagePath = $storagePath . $imageFilePath;
         }
@@ -869,7 +869,7 @@ class MimeTypeIconGuesser extends MimeTypeExtensionGuesser implements ExtensionG
 
         $imagePathFileExistsTest = file_exists( $imagePath );
 
-        if( $imagePathFileExistsTest )
+        if ( $imagePathFileExistsTest )
         {
             $mimeIcon['image'] = '/' . $imagePath;
         }
@@ -879,20 +879,20 @@ class MimeTypeIconGuesser extends MimeTypeExtensionGuesser implements ExtensionG
 
             if ( $this->logger !== null )
             {
-                $message =  __METHOD__ . ' - Warning: File image path, "web/' . $imagePath . '" is not found on disk. Check your bundle asset installation.';
+                $message = __METHOD__ . ' - Warning: File image path, "web/' . $imagePath . '" is not found on disk. Check your bundle asset installation.';
                 $messageQuestion = 'Perhaps you forgot to run the "php ezpublish/console assets:install --relative --symlink web" command?';
 
                 $this->logger->warning( $message );
                 $this->logger->warning( $messageQuestion );
 
-                if( $this->displayDebug && $this->displayDebugLevel >= 0 )
+                if ( $this->displayDebug && $this->displayDebugLevel >= 0 )
                 {
                     echo '<pre class="" dir="ltr"><font color="#cc0000">' . $message . '</font><br /><br /><font color="#cc0000">' . $messageQuestion . '</font></pre>';
                 }
             }
         }
 
-        if( $imagePathFileExistsTest )
+        if ( $imagePathFileExistsTest )
         {
             return $mimeIcon;
         }

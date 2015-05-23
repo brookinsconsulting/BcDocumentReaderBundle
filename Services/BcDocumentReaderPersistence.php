@@ -53,17 +53,16 @@ class BcDocumentReaderPersistence
      *
      * @param Symfony\Component\DependencyInjection\ContainerInterface $container
      * @param array $options
-     * @param array $parameters
      */
-    public function __construct( ContainerInterface $container, array $options = array(), array $parameters = array() )
+    public function __construct( ContainerInterface $container, array $options = array() )
     {
         $this->container = $container;
         $this->options = $options[0]['options'];
         $this->displayDebug = $this->options['display_debug'] == true ? true : false;
         $this->displayDebugLevel = is_numeric( $this->options['display_debug_level'] ) ? $this->options['display_debug_level'] : 0;
-        $this->pageDataPersistence = $this->container->get('brookinsconsulting.page_data_persistence');
+        $this->pageDataPersistence = $this->container->get( 'brookinsconsulting.page_data_persistence' );
 
-        if( $this->pageDataPersistence->has( 'document_readers' ) )
+        if ( $this->pageDataPersistence->has( 'document_readers' ) )
         {
             $this->documentReaders = $this->pageDataPersistence->get( 'document_readers' );
         }
@@ -73,7 +72,7 @@ class BcDocumentReaderPersistence
             $this->documentReaders = $this->pageDataPersistence->get( 'document_readers' );
         }
 
-        if( $this->pageDataPersistence->has( 'document_reader_extensions' ) )
+        if ( $this->pageDataPersistence->has( 'document_reader_extensions' ) )
         {
             $this->documentReaderExtensions = $this->pageDataPersistence->get( 'document_reader_extensions' );
         }
@@ -83,7 +82,7 @@ class BcDocumentReaderPersistence
             $this->documentReaderExtensions = $this->pageDataPersistence->get( 'document_reader_extensions' );
         }
 
-        if( $this->displayDebug && $this->displayDebugLevel >= 3 )
+        if ( $this->displayDebug && $this->displayDebugLevel >= 3 )
         {
             echo "<span style='color:000000;'>BcDocumentReaderPersistence : __construct : Document Reader Extensions</span><br />\n";
             var_dump( $this->pageDataPersistence->get( 'document_reader_extensions' ) );
@@ -136,7 +135,7 @@ class BcDocumentReaderPersistence
      */
     public function add( $value, $name = 'document_reader_extensions' )
     {
-        if( !is_array( $value ) )
+        if ( !is_array( $value ) )
         {
             $value = array( $value );
         }
@@ -146,23 +145,23 @@ class BcDocumentReaderPersistence
             $valueKeys = $valueKeys[0];
         }
 
-        if( !$this->in_array_recursive( $valueKeys, array_keys( $this->get( $name ) ) ) )
+        if ( !$this->inArrayRecursive( $valueKeys, array_keys( $this->get( $name ) ) ) )
         {
             $this->pageDataPersistence->set( $name, array_merge( $this->get( $name ), $value ) );
 
-            if( $this->displayDebug && $this->displayDebugLevel >= 0 && $name === 'document_reader_extensions' )
+            if ( $this->displayDebug && $this->displayDebugLevel >= 0 && $name === 'document_reader_extensions' )
             {
                 echo 'In, BcDocumentReaderPersistence : add : Added New Unique Mimetype Document Reader: ';
                 var_dump( $value );
 
-                if( $this->displayDebugLevel >= 3 )
+                if ( $this->displayDebugLevel >= 3 )
                 {
                     echo 'In, BcDocumentReaderPersistence : add : Post Add Current Document Reader Extensions List : ';
                     var_dump( $this->get( $name ) );
                 }
             }
         }
-        elseif( !in_array( $value, $this->get( $name ) ) )
+        else if ( !in_array( $value, $this->get( $name ) ) )
         {
             $this->pageDataPersistence->set( $name, array_merge( $this->get( $name ), $value ) );
         }
@@ -176,21 +175,21 @@ class BcDocumentReaderPersistence
      * @param bool $strict Wheather to perform strict matching. Unused
      * @return bool
      */
-    public function in_array_recursive( $needle, $haystack = false, $strict = true )
+    public function inArrayRecursive( $needle, $haystack = false, $strict = true )
     {
         $found = false;
 
-        foreach( $haystack as $key => $item )
+        foreach ( $haystack as $key => $item )
         {
-            if( $item == $needle )
+            if ( $item == $needle )
             {
                 $found = true;
                 break;
             }
-            elseif ( is_array( $item ) )
+            else if ( is_array( $item ) )
             {
-                $found = $this->findNeedleInArrayAndReturnContainingArray( $needle, $item, $strict );
-                if( $found === true )
+                $found = $this->inArrayRecursive( $needle, $item, $strict );
+                if ( $found === true )
                 {
                     break;
                 }

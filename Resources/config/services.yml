@@ -47,8 +47,8 @@ services:
 #            - "@ezpublish.api.service.location"
 #            - "@ezpublish.api.service.content"
 #            - "@ezpublish.urlalias_router"
-#            - "@?logger"
 #            - "@service_container"
+#            - "@?logger"
 #        tags:
 #            - { name: brookinsconsulting.xmltextblock.ezlink.preconverter }
 #            - { name: ezpublish.ezxml.converter }

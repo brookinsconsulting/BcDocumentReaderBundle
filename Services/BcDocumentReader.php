@@ -51,7 +51,7 @@ class BcDocumentReader extends BcDocumentReaderPersistence
 
         parent::__construct( $container, $options, $mimetypes );
 
-        if( $this->displayDebug && $this->displayDebugLevel >= 3 )
+        if ( $this->displayDebug && $this->displayDebugLevel >= 3 )
         {
             echo "<span style='color:000000;'>BcDocumentReader : __construct:</span><br />\n";
             var_dump( $this->get( 'document_reader_extensions' ) );
@@ -72,38 +72,38 @@ class BcDocumentReader extends BcDocumentReaderPersistence
         $results = false;
         $fileMeta = array();
 
-        if( !empty( $url ) && strpos( $url, 'mailto' ) === false )
+        if ( !empty( $url ) && strpos( $url, 'mailto' ) === false )
         {
             $urlFileName = basename( $url );
 
-            if( $fileMimeType != null )
+            if ( $fileMimeType != null )
             {
                 $urlFileNameArray = explode( '.', $urlFileName );
                 $fileExtension = trim( $urlFileNameArray[1] );
             }
             else
             {
-                $mimeTypeGuesser = $this->container->get('brookinsconsulting.document_reader.mimetype.extension.guesser');
+                $mimeTypeGuesser = $this->container->get( 'brookinsconsulting.document_reader.mimetype.extension.guesser' );
                 $mimeType = $mimeTypeGuesser->guessByUrl( $url );
 
                 $fileExtension = $mimeType[0];
                 $fileMimeType = isset( $mimeType[1] ) ? trim( $mimeType[1] ) : false;
 
-                if( $this->displayDebug && $this->displayDebugLevel >= 1 )
+                if ( $this->displayDebug && $this->displayDebugLevel >= 1 )
                 {
                     echo '<hr />In, BcDocumentReader : addFileUrl : Notice: Used ExtensionMimeTypeGuesser service to detect mimeType: "' . $fileMimeType . '" for file extension, ' . $fileExtension . '<hr />';
                 }
             }
 
-            if( !empty( $fileMimeType ) && !empty( $fileExtension ) )
+            if ( !empty( $fileMimeType ) && !empty( $fileExtension ) )
             {
-                foreach( $this->helperMimeMap as $index => $helperMimeMapMimeTypeOptions )
+                foreach ( $this->helperMimeMap as $index => $helperMimeMapMimeTypeOptions )
                 {
                     $helperMimeMapMimeType = $helperMimeMapMimeTypeOptions['mimeType'];
 
-                    if( $helperMimeMapMimeType == $fileMimeType )
+                    if ( $helperMimeMapMimeType == $fileMimeType )
                     {
-                        if( $link != false && $link->hasAttribute( "class" ) )
+                        if ( $link != false && $link->hasAttribute( "class" ) )
                         {
                             $link->setAttribute( "class", "file-" . $fileExtension );
                         }
@@ -114,17 +114,17 @@ class BcDocumentReader extends BcDocumentReaderPersistence
                     }
                 }
 
-                if( !empty( $fileMeta ) )
+                if ( !empty( $fileMeta ) )
                 {
                     $results = $this->add( $fileMeta );
                 }
-                elseif ( $this->logger !== null )
+                else if ( $this->logger !== null )
                 {
                     $message = __METHOD__ . ' - Warning: File extension, "' . $fileExtension . '" and File mimeType, "' . $fileMimeType . '" not found in yaml mimetype settings, mimetypes.yml: helper_mime_map group.';
 
                     $this->logger->warning( $message );
 
-                    if( $this->displayDebug && $this->displayDebugLevel >= 2 )
+                    if ( $this->displayDebug && $this->displayDebugLevel >= 2 )
                     {
                         echo '<hr />' . $message . '<hr />';
                     }
@@ -148,14 +148,14 @@ class BcDocumentReader extends BcDocumentReaderPersistence
         $fileExtension = false;
         $fileMimeType = false;
 
-        foreach( $this->fileFieldIdentifiers as $identifier )
+        foreach ( $this->fileFieldIdentifiers as $identifier )
         {
             $file = $content->getField( $identifier );
 
-            if( !empty( $file->value ) )
+            if ( !empty( $file->value ) )
             {
                 $fileValue = $file->value;
-                $contentInfo =  $content->contentInfo;
+                $contentInfo = $content->contentInfo;
 
                 $fileName = $fileValue->fileName;
                 $fileNameArray = explode( '.', $fileName );
@@ -167,7 +167,7 @@ class BcDocumentReader extends BcDocumentReaderPersistence
             }
         }
 
-        if( !empty( $fileMimeType ) && !empty( $fileExtension ) )
+        if ( !empty( $fileMimeType ) && !empty( $fileExtension ) )
         {
             return $this->addFileUrl( $fileUri, $fileMimeType, $link, $message );
         }
@@ -187,22 +187,22 @@ class BcDocumentReader extends BcDocumentReaderPersistence
     {
         $found = false;
 
-        if( $haystack === false )
+        if ( $haystack === false )
         {
             $haystack = $this->helperMimeMap;
         }
 
-        foreach( $haystack as $key => $item )
+        foreach ( $haystack as $key => $item )
         {
-            if( $item == $needle )
+            if ( $item == $needle )
             {
                 $found = true;
                 break;
             }
-            elseif ( is_array( $item ) )
+            else if ( is_array( $item ) )
             {
                 $found = $this->findNeedleInArrayAndReturnContainingArray( $needle, $item, $strict );
-                if( $found === true )
+                if ( $found === true )
                 {
                     $found = $item;
                     break;
@@ -227,7 +227,7 @@ class BcDocumentReader extends BcDocumentReaderPersistence
         {
             $documentReaderExtensions = $this->get();
 
-            if( $this->displayDebug && $this->displayDebugLevel >= 1 )
+            if ( $this->displayDebug && $this->displayDebugLevel >= 1 )
             {
                 echo 'In, BcDocumentReader : buildDocumentReadersResults : Current Document Reader Extensions List : ';
                 var_dump( $documentReaderExtensions );
@@ -240,26 +240,26 @@ class BcDocumentReader extends BcDocumentReaderPersistence
 
             foreach ( $documentReaderExtensions as $fileTypeExtension => $fileTypeDocumentInfo )
             {
-                if( empty( $fileTypeDocumentInfo['mimetype'] ) )
+                if ( empty( $fileTypeDocumentInfo['mimetype'] ) )
                 {
-                    $mimeTypeGuesser = $this->container->get('brookinsconsulting.document_reader.mimetype.extension.guesser');
+                    $mimeTypeGuesser = $this->container->get( 'brookinsconsulting.document_reader.mimetype.extension.guesser' );
                     $mimeType = $mimeTypeGuesser->guess( $fileTypeExtension );
                     $mimeContentType = $mimeType[1];
 
                     if ( !$mimeType && $this->logger !== null )
                     {
-                        $message =  __METHOD__ . ' - Warning: File extension, "' . $fileTypeExtension . '" and File mimeType, "' . $fileMimeType . '" not found in ExtensionMimeTypeGuesser static mimeType / fileExtension mappings';
+                        $message = __METHOD__ . ' - Warning: File extension, "' . $fileTypeExtension . '" and File mimeType, "' . $fileMimeType . '" not found in ExtensionMimeTypeGuesser static mimeType / fileExtension mappings';
 
                         $this->logger->warning( $message );
 
-                        if( $this->displayDebug && $this->displayDebugLevel >= 2 )
+                        if ( $this->displayDebug && $this->displayDebugLevel >= 2 )
                         {
                             echo '<hr />' . $message . '<hr />';
                         }
 
                         continue;
                     }
-                    elseif( $this->displayDebug && $this->displayDebugLevel >= 1 )
+                    else if ( $this->displayDebug && $this->displayDebugLevel >= 1 )
                     {
                         echo '<hr />In, BcDocumentReader : buildDocumentReadersResults : Notice: Used ExtensionMimeTypeGuesser service to detect mimeType: "' . $mimeContentType . '" for file extension, ' . $fileTypeExtension . '<hr />';
                     }
@@ -269,13 +269,13 @@ class BcDocumentReader extends BcDocumentReaderPersistence
                     $mimeContentType = $fileTypeDocumentInfo['mimetype'];
                 }
 
-                if( $mimeContentType )
+                if ( $mimeContentType )
                 {
                     $mimeTypeHelperMapping = $this->findNeedleInArrayAndReturnContainingArray( $mimeContentType );
                     $mimeTypeHelperMappingType = $mimeTypeHelperMapping["type"];
                     $mimeTypeHelperGroup = $this->helpers[$mimeTypeHelperMappingType];
 
-                    if( $this->displayDebug && $this->displayDebugLevel >= 2 )
+                    if ( $this->displayDebug && $this->displayDebugLevel >= 2 )
                     {
                         echo 'In, BcDocumentReader : buildDocumentReadersResults : Detected Matching Document Reader Helper Application Group for mimeType: ' . $mimeContentType;
                         var_dump( $mimeTypeHelperMappingType );
@@ -285,11 +285,11 @@ class BcDocumentReader extends BcDocumentReaderPersistence
                     {
                         if ( $this->logger !== null )
                         {
-                            $message =  __METHOD__ . ' - Warning: File extension, "' . $fileTypeExtension . '" and File mimeType, "' . $fileMimeType . '" not found in yaml mimetype settings, mimetypes.yml: helper_mime_map group.';
+                            $message = __METHOD__ . ' - Warning: File extension, "' . $fileTypeExtension . '" and File mimeType, "' . $fileMimeType . '" not found in yaml mimetype settings, mimetypes.yml: helper_mime_map group.';
 
                             $this->logger->warning( $message );
 
-                            if( $this->displayDebug && $this->displayDebugLevel >= 2 )
+                            if ( $this->displayDebug && $this->displayDebugLevel >= 2 )
                             {
                                 echo '<hr />' . $message . '<hr />';
                             }
@@ -298,20 +298,22 @@ class BcDocumentReader extends BcDocumentReaderPersistence
                         continue;
                     }
 
-                    $mimeTypeIconGuesser = $this->container->get('brookinsconsulting.document_reader.mimetype.icon.guesser');
+                    $mimeTypeIconGuesser = $this->container->get( 'brookinsconsulting.document_reader.mimetype.icon.guesser' );
                     $mimeTypeIcon = $mimeTypeIconGuesser->guess( $mimeContentType, false );
 
-                    if( !$this->findNeedleInArrayAndReturnContainingArray( $mimeTypeHelperMappingType, $results ) )
+                    if ( !$this->findNeedleInArrayAndReturnContainingArray( $mimeTypeHelperMappingType, $results ) )
                     {
-                        $results[] = array( 'file_extension' => $fileTypeExtension,
-                                            'mime_type' => $mimeContentType,
-                                            'mime_type_group' => $mimeTypeHelperMappingType,
-                                            'file_type_name' => $mimeTypeHelperGroup['name'],
-                                            'viewer_name' => $mimeTypeHelperGroup['viewer_name'],
-                                            'viewer_url' => $mimeTypeHelperGroup['viewer_url'],
-                                            'icon' => $mimeTypeIcon['image'],
-                                            'icon_height' => $mimeTypeIcon['height'],
-                                            'icon_width' => $mimeTypeIcon['width'] );
+                        $results[] = array(
+                            'file_extension' => $fileTypeExtension,
+                            'mime_type' => $mimeContentType,
+                            'mime_type_group' => $mimeTypeHelperMappingType,
+                            'file_type_name' => $mimeTypeHelperGroup['name'],
+                            'viewer_name' => $mimeTypeHelperGroup['viewer_name'],
+                            'viewer_url' => $mimeTypeHelperGroup['viewer_url'],
+                            'icon' => $mimeTypeIcon['image'],
+                            'icon_height' => $mimeTypeIcon['height'],
+                            'icon_width' => $mimeTypeIcon['width']
+                        );
                     }
                 }
             }
@@ -320,14 +322,14 @@ class BcDocumentReader extends BcDocumentReaderPersistence
 
             return true;
         }
-        catch( \eZ\Publish\API\Repository\Exceptions\NotFoundException $e )
+        catch ( \eZ\Publish\API\Repository\Exceptions\NotFoundException $e )
         {
             if ( $this->logger !== null )
             {
                 $message = __METHOD__ . ' - Warning: NotFoundException: "' . $e . '"';
                 $this->logger->warning( $message );
 
-                if( $this->displayDebug && $this->displayDebugLevel >= 2 )
+                if ( $this->displayDebug && $this->displayDebugLevel >= 2 )
                 {
                     echo '<hr />' . $message . '<hr />';
                 }

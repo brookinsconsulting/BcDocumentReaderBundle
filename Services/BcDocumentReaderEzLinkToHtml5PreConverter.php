@@ -62,17 +62,17 @@ class BcDocumentReaderEzLinkToHtml5PreConverter implements Converter
      * @param eZ\Publish\API\Repository\LocationService $locationService
      * @param eZ\Publish\API\Repository\ContentService $contentService
      * @param eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter $urlAliasRouter
-     * @param Psr\Log\LoggerInterface $logger
      * @param Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @param Psr\Log\LoggerInterface $logger
      */
-    public function __construct( LocationService $locationService, ContentService $contentService, UrlAliasRouter $urlAliasRouter, LoggerInterface $logger = null, ContainerInterface $container )
+    public function __construct( LocationService $locationService, ContentService $contentService, UrlAliasRouter $urlAliasRouter, ContainerInterface $container, LoggerInterface $logger = null )
     {
         $this->locationService = $locationService;
         $this->contentService = $contentService;
         $this->urlAliasRouter = $urlAliasRouter;
         $this->logger = $logger;
         $this->container = $container;
-        $this->documentReader = $this->container->get('brookinsconsulting.document_reader');
+        $this->documentReader = $this->container->get( 'brookinsconsulting.document_reader' );
     }
 
     /**
@@ -99,7 +99,7 @@ class BcDocumentReaderEzLinkToHtml5PreConverter implements Converter
                         $link->getAttribute( "object_id" )
                     );
 
-                    $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' object_id elseif block' );
+                    $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' object_id else if block' );
                 }
                 catch ( APINotFoundException $e )
                 {
@@ -133,7 +133,7 @@ class BcDocumentReaderEzLinkToHtml5PreConverter implements Converter
                         $location->getContentInfo()
                     );
 
-                    $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' node_id elseif block' );
+                    $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' node_id else if block' );
                 }
                 catch ( APINotFoundException $e )
                 {

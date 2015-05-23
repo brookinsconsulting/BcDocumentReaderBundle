@@ -33,6 +33,9 @@ class BcDocumentReaderExtension extends Extension implements PrependExtensionInt
      */
     public function load( array $configs, ContainerBuilder $container )
     {
+        // param $configs (for BC) has always been an empty array so we do this only to silence ezcs warnings for not used constructor variable
+        $notUsed = $configs;
+
         // Load and process Resources/config/documentreader.yml configuration options
         $documentReaderConfig = Yaml::parse( __DIR__ . '/../Resources/config/documentreader.yml' );
 

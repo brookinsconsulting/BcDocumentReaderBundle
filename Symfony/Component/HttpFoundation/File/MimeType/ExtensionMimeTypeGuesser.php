@@ -839,10 +839,10 @@ class ExtensionMimeTypeGuesser extends MimeTypeExtensionGuesser implements Exten
                 $found = array( $item, $key );
                 break;
             }
-            elseif ( is_array( $item ) )
+            else if ( is_array( $item ) )
             {
                 $found = $this->findMimeTypeByExtension( $needle, $item, $strict );
-                if( is_array( $found ) )
+                if ( is_array( $found ) )
                 {
                     break;
                 }

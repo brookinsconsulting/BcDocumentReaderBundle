@@ -54,7 +54,7 @@ class BcDocumentReaderXmlBlockLinkPreConverter implements Converter
         $this->repository = $repository;
         $this->options = $options[0]['options'];
         $this->displayDebug = $this->options['display_debug'] == true ? true : false;
-        $this->documentReader = $this->container->get('brookinsconsulting.document_reader');
+        $this->documentReader = $this->container->get( 'brookinsconsulting.document_reader' );
     }
 
     /**
@@ -69,11 +69,11 @@ class BcDocumentReaderXmlBlockLinkPreConverter implements Converter
         $contentService = $this->repository->getContentService();
         $locationService = $this->repository->getLocationService();
 
-        foreach( $xml->getElementsByTagName( "link" ) as $link )
+        foreach ( $xml->getElementsByTagName( "link" ) as $link )
         {
-            if( $link->hasAttribute( "object_id" ) || $link->hasAttribute( "node_id" ) )
+            if ( $link->hasAttribute( "object_id" ) || $link->hasAttribute( "node_id" ) )
             {
-                if( $link->hasAttribute( "node_id" ) )
+                if ( $link->hasAttribute( "node_id" ) )
                 {
                     try
                     {
@@ -83,9 +83,9 @@ class BcDocumentReaderXmlBlockLinkPreConverter implements Converter
                         $content = $contentService->loadContentByContentInfo(
                             $location->getContentInfo()
                         );
-                        $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' node_id elseif block' );
+                        $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' node_id else if block' );
                     }
-                    catch( Exception $e )
+                    catch ( Exception $e )
                     {
                         continue;
                     }
@@ -97,27 +97,26 @@ class BcDocumentReaderXmlBlockLinkPreConverter implements Converter
                         $content = $contentService->loadContent(
                             $link->getAttribute( "object_id" )
                         );
-                        $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' object_id elseif block' );
+                        $this->documentReader->addContent( $content, $link, 'Detected by: ' . __METHOD__ . ' object_id else if block' );
                     }
-                    catch( Exception $e )
+                    catch ( Exception $e )
                     {
                         continue;
                     }
                 }
             }
-            elseif( $link->hasAttribute( "url" ) )
+            else if ( $link->hasAttribute( "url" ) )
             {
                 try
                 {
                     $url = $link->getAttribute( "url" );
-                    $this->documentReader->addFileUrl( $url, null, $link, 'Detected by: ' . __METHOD__ . ' url elseif block' );
+                    $this->documentReader->addFileUrl( $url, null, $link, 'Detected by: ' . __METHOD__ . ' url else if block' );
                 }
-                catch( Exception $e )
+                catch ( Exception $e )
                 {
                     continue;
                 }
             }
-
         }
     }
 }

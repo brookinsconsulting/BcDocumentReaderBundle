@@ -46,7 +46,7 @@ class DocumentReaderTwigExtension extends Twig_Extension
         $this->container = $container;
         $this->options = $options[0]['options'];
         $this->displayDebug = $this->options['display_debug'] == true ? true : false;
-        $this->documentReader = $this->container->get('brookinsconsulting.document_reader');
+        $this->documentReader = $this->container->get( 'brookinsconsulting.document_reader' );
     }
 
     /**
