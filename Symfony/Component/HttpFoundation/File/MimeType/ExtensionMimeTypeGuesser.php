@@ -875,7 +875,8 @@ class ExtensionMimeTypeGuesser extends MimeTypeExtensionGuesser implements Exten
     {
         $urlFileName = basename( $url );
         $urlFileNameArray = explode( '.', $urlFileName );
-        $urlFileNameExtension = $urlFileNameArray[1];
+        $urlFileNameArrayMaxKey = max( array_keys( $urlFileNameArray ) );
+        $urlFileNameExtension = $urlFileNameArray[ $urlFileNameArrayMaxKey ];
 
         return $this->guess( $urlFileNameExtension );
     }
