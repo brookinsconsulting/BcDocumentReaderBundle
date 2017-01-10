@@ -419,6 +419,13 @@ Usage
 
 The solution is configured to work virtually by default once properly installed.
 
+Testing
+=====
+
+The solution is configured to work once properly installed and configured.
+
+Simply navigate to a content object node which contains one or more xmlblock attributes. If the xmlblock attribute content contains links to files like pdf, zip, rar, mp3, etc simply load this page in your user siteaccess. If not simply use the admin to add some links to filetypes supported by default and view the node in your user siteaccess.
+
 
 Troubleshooting
 ===============
